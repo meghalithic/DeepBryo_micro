@@ -64,6 +64,18 @@ If you would rather use the model as a command-line tool to perform high-through
 python app/app-cli.py -i INPUT_DIR -o OUT_DIR [other optional arguments]
 ```
 
+For example:
+```
+python app/app-cli.py -i ~/Desktop/Microporella-jpg -o ~/Documents/GitHub/bryozoa/DeepBryo_micro
+```
+To test:
+```
+python app/app-cli.py -i ~/Desktop/Microporella-jpg -o ~/Documents/GitHub/bryozoa/DeepBryo_micro -sc 0.8
+```
+```
+python app/app-cli.py -i ~/Desktop/Microporella-jpg -o ~/Documents/GitHub/bryozoa/DeepBryo_micro -p [1,1,1,117]
+```
+
 The parameters associated with the cli tool mirror the web app and are:
 
 ```
