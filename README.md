@@ -50,8 +50,8 @@ conda create -n deepbryo python=3.7 pytorch=1.10 cudatoolkit=11.3 torchvision==0
 conda activate deepbryo
 pip3 install openmim
 mim install mmcv-full==1.4.0
-git clone https://github.com/agporto/DeepBryo.git
-cd DeepBryo
+#git clone https://github.com/agporto/DeepBryo.git
+#cd DeepBryo
 pip3 install -e .
 ```
 
