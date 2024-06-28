@@ -50,8 +50,8 @@ conda create -n deepbryo python=3.7 pytorch=1.10 cudatoolkit=11.3 torchvision==0
 conda activate deepbryo
 pip3 install openmim
 mim install mmcv-full==1.4.0
-git clone https://github.com/agporto/DeepBryo.git
-cd DeepBryo
+#git clone https://github.com/agporto/DeepBryo.git
+#cd DeepBryo
 pip3 install -e .
 ```
 
@@ -64,10 +64,22 @@ If you would rather use the model as a command-line tool to perform high-through
 python app/app-cli.py -i INPUT_DIR -o OUT_DIR [other optional arguments]
 ```
 
+For example:
+```
+python app/app-cli.py -i ~/Desktop/Microporella-jpg -o ~/Documents/GitHub/bryozoa/DeepBryo_micro
+```
+To test:
+```
+python app/app-cli.py -i ~/Desktop/Microporella-jpg -o ~/Documents/GitHub/bryozoa/DeepBryo_micro -sc 0.8
+```
+```
+python app/app-cli.py -i ~/Desktop/Microporella-jpg -o ~/Documents/GitHub/bryozoa/DeepBryo_micro -p 5 5 5 125
+```
+
 The parameters associated with the cli tool mirror the web app and are:
 
 ```
-usage: app-cli.py [-h] -i INPUT_DIR -o OUT_DIR [-c CLASS] [-p PADDING [PADDING ...]] [-t CONFIDENCE] 
+usage: app-cli.py [-h] -i INPUT_DIR -o OUT_DIR [-c CLASS] [-p PADDING] [-t CONFIDENCE] 
                   [-a] [-s STRICTNESS] [-sc SCALE]
 
 optional arguments:
@@ -82,9 +94,9 @@ optional arguments:
   -c CLASS, --class CLASS
                         object class of interest. 
                         options: all, autozooid, orifice, avicularium, ovicell, ascopore, opesia, spiramen
-			(default = all)
+                  			(default = all)
 
-  -p PADDING [PADDING ...], --padding PADDING [PADDING ...]
+  -p PADDING, --padding PADDING
                         remove objects falling within a certain distance from
                         the image border. please provide it a list in the
                         following order: left, top, right, bottom. 

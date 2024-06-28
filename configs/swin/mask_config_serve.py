@@ -131,7 +131,7 @@ data = dict(
     ),
 )
 
-load_from = "../../inference/deepbryo.pth"
+load_from = "../../inference/deepbryo_tiny.pth"
 
 
 optimizer = dict(
