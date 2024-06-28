@@ -73,13 +73,13 @@ To test:
 python app/app-cli.py -i ~/Desktop/Microporella-jpg -o ~/Documents/GitHub/bryozoa/DeepBryo_micro -sc 0.8
 ```
 ```
-python app/app-cli.py -i ~/Desktop/Microporella-jpg -o ~/Documents/GitHub/bryozoa/DeepBryo_micro -p [1,1,1,117]
+python app/app-cli.py -i ~/Desktop/Microporella-jpg -o ~/Documents/GitHub/bryozoa/DeepBryo_micro -p 5 5 5 125
 ```
 
 The parameters associated with the cli tool mirror the web app and are:
 
 ```
-usage: app-cli.py [-h] -i INPUT_DIR -o OUT_DIR [-c CLASS] [-p PADDING [PADDING ...]] [-t CONFIDENCE] 
+usage: app-cli.py [-h] -i INPUT_DIR -o OUT_DIR [-c CLASS] [-p PADDING] [-t CONFIDENCE] 
                   [-a] [-s STRICTNESS] [-sc SCALE]
 
 optional arguments:
@@ -95,7 +95,7 @@ optional arguments:
                         object class of interest. 
                         options: all, autozooid, orifice, avicularium, ovicell, ascopore, opesia
 
-  -p PADDING [PADDING ...], --padding PADDING [PADDING ...]
+  -p PADDING, --padding PADDING
                         remove objects falling within a certain distance from
                         the image border. please provide it as a list in the
                         following order: left, top, right, bottom
