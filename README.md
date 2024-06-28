@@ -81,7 +81,7 @@ optional arguments:
 
   -c CLASS, --class CLASS
                         object class of interest. 
-                        options: all, autozooid, orifice, avicularium, ovicell, ascopore, opesia
+                        options: all, autozooid, orifice, avicularium, ovicell, ascopore, opesia, spiramen
 			(default = all)
 
   -p PADDING [PADDING ...], --padding PADDING [PADDING ...]
