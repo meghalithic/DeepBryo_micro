@@ -84,7 +84,7 @@ optional arguments:
                         options: all, autozooid, orifice, avicularium, ovicell, ascopore, opesia
 			(default = all)
 
- -p PADDING [PADDING ...], --padding PADDING [PADDING ...]
+  -p PADDING [PADDING ...], --padding PADDING [PADDING ...]
                         remove objects falling within a certain distance from
                         the image border. please provide it a list in the
                         following order: left, top, right, bottom. 
