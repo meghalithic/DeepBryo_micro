@@ -93,7 +93,7 @@ optional arguments:
 
   -c CLASS, --class CLASS
                         object class of interest. 
-                        options: all, autozooid, orifice, avicularium, ovicell, ascopore, opesia
+                        options: all, autozooid, orifice, avicularium, ovicell, ascopore, opesia, spiramen
 
   -p PADDING, --padding PADDING
                         remove objects falling within a certain distance from
