@@ -94,11 +94,15 @@ optional arguments:
   -c CLASS, --class CLASS
                         object class of interest. 
                         options: all, autozooid, orifice, avicularium, ovicell, ascopore, opesia, spiramen
+                  			(default = all)
 
   -p PADDING, --padding PADDING
                         remove objects falling within a certain distance from
-                        the image border. please provide it as a list in the
-                        following order: left, top, right, bottom
+                        the image border. please provide it a list in the
+                        following order: left, top, right, bottom. 
+			the list should be whole numbers separated only by spaces.
+			For example: -p 5 5 5 5
+			(default = 0 0 0 0)
 
   -t CONFIDENCE, --confidence CONFIDENCE
                         model's confidence threshold (default = 0.5)
@@ -106,12 +110,17 @@ optional arguments:
   -a, --autofilter      enable autofilter of model predictions
 
   -s STRICTNESS, --strictness STRICTNESS
-                        regulated the strictness of the automated filtering algorithm
+                        regulated the strictness of the automated filtering algorithm (default = 0.5)
 
   -sc SCALE, --scale SCALE
                         pixel-to-um scaling parameter (default = None)
 ```
 
+For example:
+
+```
+python app/app-cli.py -i ~/Documents/Imagefoldername -o ~/Documents/Outputfoldername -c avicularium -p 0 5 0 10 -t 0.90 -a -s 0.25 -sc 0.809
+```
 
 
 
