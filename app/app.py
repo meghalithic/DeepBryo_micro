@@ -154,6 +154,10 @@ def mask_stats(mask):
     maskedArr = mask_util.decode(mask)
     contours, _ = cv2.findContours(maskedArr, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     cnt = max(contours, key=cv2.contourArea)
+    # Convert the contour to a list of tuples
+    cnt_list = cnt.reshape(-1, 2).tolist()  # Convert numpy array to list of (x, y) tuples
+    # Serialize the list to JSON format
+    cnt_json = json.dumps(cnt_list)
     M = cv2.moments(cnt)
     cX = int(M["m10"] / M["m00"])
     cY = int(M["m01"] / M["m00"])
@@ -163,10 +167,23 @@ def mask_stats(mask):
     solidity = float(area) / cv2.contourArea(hull)
     rect = cv2.minAreaRect(cnt)
     (xc, yc), (d1, d2), angle = rect
+    # Convert the rectangle to box points and then to integer values
+    box = cv2.boxPoints(rect)
+    box = np.int0(box)
+    # Create a dictionary to hold bounding box information
+    rect_info = {
+        "center": {"x": x, "y": y},
+        "size": {"width": width, "height": height},
+        "angle": angle,
+        "box_points": box.tolist()
+    }
+    # Serialize the rectangle information to JSON format
+    rect_json = json.dumps(rect_info) 
+    box_points = rect_info["box_points"] #Top-left corner; Top-right corner; Bottom-right corner; Bottom-left corner
     circularity = 4 * math.pi * area / (perimeter * perimeter)
     moments = cv2.moments(cnt)
     hu = cv2.HuMoments(moments)
-    return area, perimeter, solidity, circularity, cX, cY, d1, d2, angle, hu
+    return area, perimeter, solidity, circularity, cX, cY, d1, d2, angle, hu, cnt_json, box_points
 
 
 def summarize(predictions, class_id, classes, filename, scale=None):
@@ -187,6 +204,8 @@ def summarize(predictions, class_id, classes, filename, scale=None):
                     d2,
                     angle,
                     hu,
+                    cnt_json,
+                    box_points,
                 ) = mask_stats(masks[num][idx])
                 annotation_info = {
                     "image_id": filename,
@@ -210,6 +229,8 @@ def summarize(predictions, class_id, classes, filename, scale=None):
                     "hu5": hu[4][0],
                     "hu6": hu[5][0],
                     "hu7": hu[6][0],
+                    "polygon": cnt_json,
+                    "min_bbox": box_points,
                     "confidence": element[4],
                     "unit": "pixels" if scale is None else "mm",
                 }
