@@ -10,6 +10,7 @@ import pycocotools.mask as mask_util
 import math
 import xgboost
 import pickle
+import json
 
 PAGE_CONFIG = {"page_title": "DeepBryo", "page_icon": ":o", "layout": "wide"}
 st.set_page_config(**PAGE_CONFIG)
@@ -179,11 +180,11 @@ def mask_stats(mask):
     }
     # Serialize the rectangle information to JSON format
     rect_json = json.dumps(rect_info) 
-    box_points = rect_info["box_points"] #Top-left corner; Top-right corner; Bottom-right corner; Bottom-left corner
+    min_bbox_points = rect_info["box_points"] #Top-left corner; Top-right corner; Bottom-right corner; Bottom-left corner
     circularity = 4 * math.pi * area / (perimeter * perimeter)
     moments = cv2.moments(cnt)
     hu = cv2.HuMoments(moments)
-    return area, perimeter, solidity, circularity, cX, cY, d1, d2, angle, hu, cnt_json, box_points
+    return area, perimeter, solidity, circularity, cX, cY, d1, d2, angle, hu, cnt_json, min_bbox_points
 
 
 def summarize(predictions, class_id, classes, filename, scale=None):
@@ -205,7 +206,7 @@ def summarize(predictions, class_id, classes, filename, scale=None):
                     angle,
                     hu,
                     cnt_json,
-                    box_points,
+                    min_bbox_points,
                 ) = mask_stats(masks[num][idx])
                 annotation_info = {
                     "image_id": filename,
@@ -230,7 +231,7 @@ def summarize(predictions, class_id, classes, filename, scale=None):
                     "hu6": hu[5][0],
                     "hu7": hu[6][0],
                     "polygon": cnt_json,
-                    "min_bbox": box_points,
+                    "min_bbox_points": min_bbox_points,
                     "confidence": element[4],
                     "unit": "pixels" if scale is None else "mm",
                 }
