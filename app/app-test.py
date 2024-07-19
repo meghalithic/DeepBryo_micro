@@ -168,13 +168,15 @@ def mask_stats(mask):
     solidity = float(area) / cv2.contourArea(hull)
     rect = cv2.minAreaRect(cnt)
     (xc, yc), (d1, d2), angle = rect
+    min_width = min(d1, d2)
+    min_height = max(d1, d2)
     # Convert the rectangle to box points and then to integer values
     box = cv2.boxPoints(rect)
     box = np.int0(box)
     # Create a dictionary to hold bounding box information
     rect_info = {
-        "center": {"x": x, "y": y},
-        "size": {"width": width, "height": height},
+        "center": {"x": xc, "y": yc},
+        "size": {"width": min_width, "height": min_height},
         "angle": angle,
         "box_points": box.tolist()
     }
