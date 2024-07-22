@@ -297,7 +297,7 @@ def main():
     st.sidebar.markdown("## Output table")
     table = st.sidebar.checkbox("Generate table output", value=False)
 
-    filter_id = st.sidebar.checkbox("Remove object from output by ID", value=True)
+    filter_id = st.sidebar.checkbox("Include object by ID", value=True)
     selected_ids = st.sidebar.multiselect("Please select ID numbers", range(200))
 
     st.sidebar.markdown("## Set scale")
@@ -396,7 +396,7 @@ def main():
                     )
                     if df is not None:
                         if filter_id is True and selected_ids is not None:
-                            df = df.drop(index=selected_ids)
+                            df = df[df['ID'].isin(selected_ids)]
                         st.write("The following table reports values in mm or mm².")
                         st.dataframe(df)
                         csv = convert_df(df)
@@ -418,7 +418,7 @@ def main():
                     )
                     if df is not None:
                         if filter_id is True and selected_ids is not None:
-                            df = df.drop(index=selected_ids)
+                            df = df[df['ID'].isin(selected_ids)]
                         st.write(
                             "You have not set the scale yet. The current table reports values in pixels."
                         )
