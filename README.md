@@ -66,7 +66,7 @@ python app/app-cli.py -i INPUT_DIR -o OUT_DIR [other optional arguments]
 
 For example:
 ```
-python app/app-cli.py -i ~/Desktop/Microporella-jpg -o ~/Documents/GitHub/bryozoa/DeepBryo_micro
+python app/app-cli-test.py -i ~/Desktop/Microporella-jpg -o ~/Documents/GitHub/bryozoa/DeepBryo_micro
 ```
 To test:
 ```
