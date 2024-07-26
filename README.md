@@ -61,12 +61,12 @@ pip3 install -e .
 If you would rather use the model as a command-line tool to perform high-throughput prediction. Simply use the following command:
 
 ```
-python app/app-cli.py -i INPUT_DIR -o OUT_DIR [other optional arguments]
+python app/app-cli-ext.py -i INPUT_DIR -o OUT_DIR [other optional arguments]
 ```
 
 For example:
 ```
-python app/app-cli-test.py -i ~/Desktop/Microporella-jpg -o ~/Documents/GitHub/bryozoa/DeepBryo_micro
+python app/app-cli-ext.py -i ~/Desktop/Microporella-jpg -o ~/Documents/GitHub/bryozoa/DeepBryo_micro
 ```
 To test:
 ```
